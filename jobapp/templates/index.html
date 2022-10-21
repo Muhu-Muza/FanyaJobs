@@ -1,0 +1,371 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>FanyaJobs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="FanyaJobs find a job opportunity near you, search for jobs in Kampala, jobs in Mukono, Jobs in Uganda" />
+    <meta name="keywords" content="Job search, find jobs, careers portal, jobs in Uganda, jobs in kampala, engineering jobs, software jobs" />
+    <meta name="author" content="FanyaJobs" />
+    <link rel="shortcut icon" href="ftco-32x32.png">
+    
+    <link rel="stylesheet" href="{% static 'app/css/custom-bs.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/fonts/line-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/animate.min.css' %}">
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">    
+
+  </head>
+  <body id="top">
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+    
+
+<div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+    
+
+    <!-- NAVBAR -->
+    <header class="site-navbar mt-3">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="site-logo col-6"><a href="{% url 'home_page' %}"><img src="{% static 'app/images/Fay.png' %}" style="height:7rem; width:9rem;"></a></div>
+
+          <nav class="mx-auto site-navigation">
+            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+              <li><a href="{% url 'home_page' %}" class="nav-link active">Home</a></li>
+              
+              <li class="has-children">
+                <a href="{% url 'aboutus' %}" >About</a>
+                <ul class="dropdown">
+                  <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                  <li><a href="{% url 'blog-page' %}">Blog</a></li>
+                  <li><a href="{% url 'terms' %}">Terms and conditions</a></li>
+                </ul>
+              </li>
+              
+              <li><a href="{% url 'job-list' %}">Jobs</a></li>
+              <li><a href="{% url 'contact_page' %}">Contact</a></li>
+            </ul>
+          </nav>
+          
+          <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+            <div class="ml-auto">
+              
+              {% if user.is_authenticated %}
+              <!-- <a href="{% url 'profile' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Profile</a> -->
+              <a href="{% url 'profile' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><i class="lni lni-user"></i>   Profile</a>
+              <a href="{% url 'logout_user' %}" class="btn btn-danger border-width-2 d-none d-lg-inline-block"><i class="lni lni-lock-alt"></i>   Logout</a>
+              
+              {% else %}
+              <a href="{% url 'login_page' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><i class="lni lni-unlock"></i>   Login</a>
+              {% endif %}
+
+            </div>
+            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+            <div class="right-cta-menu mt-5  " >
+              <div class="topbar-list list-unstyled d-flex mr-auto ">
+                {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class=" badge badge-pill badge-info">{{user.first_name}} {{user.last_name}}</a>
+                
+
+                <!-- <li class="list-inline-item"><a href="javascript:void(0);"><i class=" mr-2 icon-profile"></i>{{user.first_name}} {{user.last_name}}</a></li> -->
+                {% endif %}
+                <!-- <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>FanyaJobs</a></li>
+                  -->
+                
+                  
+                </div>
+            </div>
+          </div>
+          
+
+        </div>
+          
+      </div>
+    </header>
+
+    <!-- HOME -->
+    <section class="home-section section-hero overlay bg-image" style="background: url({% static 'app/images/bg.jpg' %}) center center ;" id="home-section" >
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="mb-5 text-center">
+              <h1 class="text-muted font-weight-bold">FANYAJOBS THE IDEAL JOB HUB IN UGANDA</h1>
+              <p>The Easiest Way To Land Your Dream Job In Uganda Today.</p>
+            </div>
+            <form method="POST" class="search-jobs-form">
+              {% csrf_token %}
+
+              <div class="row mb-5 ">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-5 mb-4 mb-lg-0 ml-auto">
+                  <!-- <input type="text" class="form-control form-control-lg" placeholder="Job title, Company..."> -->
+                  {{form.title}}
+                </div>
+
+                {% if form.title.errors %}
+                {% for error in form.title.errors %}
+                  <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                  </div>
+                {% endfor %}
+                {% endif %}
+                
+              
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0 mr-auto">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                </div>
+
+                </div>
+
+               
+              <div class="row">
+                <div class="col-md-12 popular-keywords">
+                  <h3>Suggestions:</h3>
+                  <ul class="keywords list-unstyled m-0 p-0">
+                    <li><a href="#" class="">Computing</a></li>
+                    <li><a href="#" class="">Engineer</a></li>
+                    <li><a href="#" class="">Manager</a></li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- <a href="#next" class="scroll-button smoothscroll">
+        <span class=" icon-keyboard_arrow_down"></span>
+      </a> -->
+
+    </section>
+    
+    <section class="site-section bg-white">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+            <h2 class="section-title mb-2 ">The leading online Job and careers platform in Uganda. Find your dream job today with FanyaJobs.</h2>
+          </div>
+        </div>
+
+        {% for job in jobapp %}
+        <ul class="job-listings mb-5">
+          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center bg-light">
+            <a href="{% url 'job-detail' job.slug %}"></a>
+            <div class="job-listing-logo">
+              <img src="{{ job.company.companyLogo.url }}" alt="" class="img-fluid mx-auto d-block">
+            </div>
+
+            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                <h2>{{job.title}}</h2>
+                <strong>{{job.company}}</strong>
+              </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                <span class="icon-room">{{job.location}}</span> 
+              </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                <p class="text-secondary mb-0 mo-mb-2">{{job.salary}} </p>
+              </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                <p class="text-secondary mb-0 mo-mb-2"><span class="text-dark">Experience:</span>{{job.experience}} </p>
+              </div>
+              <div class="job-listing-meta">
+                <span class="badge badge-danger">{{job.nature}}</span>
+              </div>
+            </div>
+            
+          </li>
+
+          </ul>
+        {% endfor %}
+
+        <div class="row ">
+          <div class="col-md-6 text-center text-md-left mb-4 mb-md-0 ">
+            <a href="{% url 'job-list' %}" class="btn btn-outline-info ">More Jobs</a>
+          </div>
+        </div>
+       
+      </div>
+    </section>
+    
+    {% if user.is_authenticated %}
+    {% else %}
+    <section class="py-5 bg-image overlay-primary fixed overlay mb-5" style="background: url({% static 'app/images/jay3.jpg' %}) bottom center ;">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h2 class="text-white">Looking For A Job?</h2>
+            <p class="mb-0 text-white lead">Create your account now, Be the first one to know.   <i class="lni lni-pointer-right text-danger"></i></p>
+          </div>
+          <div class="col-md-3 ml-auto">
+            <a href="{% url 'register_page' %}" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+
+    <section class="bg-light pt-5 testimony-full">
+        
+        <div class="owl-carousel single-carousel">
+
+        
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 align-self-center text-center text-lg-left">
+                <blockquote>
+                  <p>&ldquo;Fresh out of University and looking for a job ? Create your resume today and bolster your chances of landing your dream job.&rdquo;</p>
+                
+                </blockquote>
+              </div>
+              <div class="col-lg-6 align-self-end text-center text-lg-right">
+                <img src="{% static 'app/images/graduate.jpg' %}" alt="Image" class="img-fluid mb-0">
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 align-self-center text-center text-lg-left">
+                <blockquote>
+                  <p>&ldquo;Are you tired of wandering around looking for that job that never seems to appear. Sign up with FanyaJobs today so you never miss any big opportunities near you.&rdquo;</p>
+                  <!-- <p><cite> &mdash; Chris Peters, @Google</cite></p> -->
+                </blockquote>
+              </div>
+              <div class="col-lg-6 align-self-end text-center text-lg-right">
+                <img src="{% static 'app/images/businessman.jpg' %}" alt="Image" class="img-fluid mb-0">
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 align-self-center text-center text-lg-left">
+                <blockquote>
+                  <p>&ldquo;Are you a team player or a lone wolf? It really doesn't matter, FanyaJobs gives you a level playing field, Browse through the jobs available today so you don't miss your opportunity.&rdquo;</p>
+                  <!-- <p><cite> &mdash; Chris Peters, @Google</cite></p> -->
+                </blockquote>
+              </div>
+              <div class="col-lg-6 align-self-end text-center text-lg-right">
+                <img src="{% static 'app/images/jay3.jpg' %}" alt="Image" class="img-fluid mb-0">
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+    </section>
+
+    <!-- <section class="pt-5 bg-image overlay-primary fixed overlay" style="background-image: url({% static 'app/images/victory.jpg' %});">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 align-self-center text-center text-md-left mb-5 mb-md-0">
+            <h2 class="text-white">Get The Mobile Apps</h2>
+            <p class="mb-5 lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+            <p class="mb-0">
+              <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-apple mr-3"></span>App Store</a>
+              <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-android mr-3"></span>Play Store</a>
+            </p>
+          </div>
+          <div class="col-md-6 ml-auto align-self-end">
+            <img src="{% static 'app/images/victory.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </section> -->
+    
+    <footer class="site-footer">
+
+      <!-- <a href="#top" class="smoothscroll scroll-top">
+        <span class="icon-keyboard_arrow_up"></span>
+      </a> -->
+
+      <div class="container">
+        <div class="row mb-auto">
+          <div class="col-8 col-md-3 mb-4 mb-md-0 ml-5">
+            <h3>Company</h3>
+            <ul class="list-unstyled">
+              <li><a href="{% url 'aboutus' %}">About Us</a></li>
+              <li><a href="{% url 'aboutus' %}">Career</a></li>
+              <li><a href="{% url 'blog-page' %}">Blog</a></li>
+              <li><a href="#">Resources</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h3>Support</h3>
+            <ul class="list-unstyled">
+              <li><a href="{% url 'contact_page' %}">Support</a></li>
+              <li><a href="{% url 'terms' %}">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h3>Contact Us</h3>
+            <div class="footer-social">
+              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="#"><span class="icon-twitter"></span></a>
+              <a href="#"><span class="icon-instagram"></span></a>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-12">
+            <p class="copyright"><small>
+              
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart text-danger" aria-hidden="true"></i>  <a href="https://colorlib.com" target="_blank" >FanyaJobs</a>
+            </small></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  
+  </div>
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'app/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'app/js/stickyfill.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.fancybox.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.easing.1.3.js' %}"></script>
+    
+    <script src="{% static 'app/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    
+    <script src="{% static 'app/js/bootstrap-select.min.js' %}"></script>
+    
+    <script src="{% static 'app/js/custom.js' %}"></script>
+
+     
+  </body>
+</html>
+
+

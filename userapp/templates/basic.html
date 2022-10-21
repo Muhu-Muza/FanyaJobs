@@ -1,0 +1,62 @@
+
+
+<p>your email has been sent</p>
+<br>
+<button type="submit" value="Download">Download</button>
+
+
+
+def resume_detail(request, slug):
+    obj  = Resume.objects.get(slug = slug)
+
+    educations = Education.objects.filter(resume = obj)
+    context = {}
+    context['object'] = obj
+    context['educations'] = educations
+
+    if request.method == 'POST':
+        edu_form = EducationForm(request.POST)
+        if edu_form.is_valid():
+            o = edu_form.save(commit = False)
+
+            o.resume = obj
+            o.save()
+
+            messages.success(request, 'Resume updated Successfully')
+            return redirect('resume-detail', slug = slug)
+        else:
+            messages.error(request, 'Error Processing Your Request')
+            context['edu_form'] = edu_form
+            return render(request, 'resume-detail.html', context)
+
+    if request.method == 'GET':
+        edu_form = EducationForm() 
+        context['edu_form'] = edu_form
+        return render(request, 'resume-detail.html', context)
+
+    return render(request, 'resume-detail.html', context)
+
+
+
+
+    {% for elitejobs in jobs %}
+
+
+
+     <!-- <div class="col-md-6">
+                                                    <div class="component-wrapper rounded shadow bg-light">
+                                                        <div class="p-4 border-bottom">
+                                                            <h4 class="title mb-0">What do you want to do?</h4>
+                                                        </div>
+                                                        <div class="p-4 mt-10 mb-10">
+                                                            {% if user.resume %}
+                                                            <p><a href="{% url 'resume-detail' user.resume.slug %}" class="btn btn-outline-info  btn-block">View Resume</a></p>
+                                                            {% else %}
+                                                            <p><a href="{% url 'create-resume' %}" class="btn btn-outline-info  btn-block">Create Resume</a></p>
+                                                            {% endif %}
+                                                            <p><a href="#" class="btn btn-outline-success btn-block">Search for jobs</a></p>
+                                                            <p><a href="#" class="btn btn-outline-danger btn-block">Create job alert</a></p>
+                                                            <p><a href="#" class="btn btn-outline-dark btn-block">Read blogs</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div> -->

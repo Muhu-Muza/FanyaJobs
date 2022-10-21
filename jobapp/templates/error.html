@@ -1,0 +1,98 @@
+<!-- {% if messages %}
+{% for message in messages %}
+
+% if messages.tags == 'error' %
+<div class="alert alert-danger">
+{{message}}
+</div>
+{% else %}
+<div class="alert alert-{{message.tags}}">
+{{message}}  
+</div>
+{%  endif %}
+
+{% endfor %}
+{% endif %} -->
+
+
+<div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+  <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select By Category">
+    
+  {% if Nursing.slug %}
+  <a href="{% url 'category-detail' Nursing.slug %}"><option><span class="text-dark">{{Nursing.title}}</span></option></a>
+  {% endif %}
+
+  {% if Education.slug %}
+  <option><a href="{% url 'category-detail' Education.slug %}"></a><span class="text-dark">{{Education.title}}</span></option>
+  {% endif %}
+
+  {% if HumanResource.slug %}
+  <option><a href="{% url 'category-detail' HumanResource.slug %}"></a><span class="text-dark">{{HumanResource.title}}</span></option>
+  {% endif %}
+
+  {% if NGO.slug %}
+  <option><a href="{% url 'category-detail' NGO.slug %}"></a><span class="text-dark">{{NGO.title}}</span></option>
+  {% endif %}
+
+  {% if Computing.slug %}
+  <option><a href="{% url 'category-detail' Computing.slug %}"></a><span class="text-dark">{{Computing.title}}</span></option>
+  {% endif %}
+
+  {% if Medical.slug %}
+  <option><a href="{% url 'category-detail' Medical.slug %}"></a><span class="text-dark">{{Medical.title}}</span></option>
+  {% endif %}
+
+  {% if Administrator.slug %}
+  <option><a href="{% url 'category-detail' Administrator.slug %}"></a><span class="text-dark">{{Administrator.title}}</span></option>
+  {% endif %}
+
+  {% if Driver.slug %}
+  <option><a href="{% url 'category-detail' Driver.slug %}"></a><span class="text-dark">{{Driver.title}}</span></option>
+  {% endif %}
+
+  {% if Insurance.slug %}
+  <option><a href="{% url 'category-detail' Insurance.slug %}"></a><span class="text-dark">{{Insurance.title}}</span></option>
+  {% endif %}
+
+  {% if Research.slug %}
+  <option><a href="{% url 'category-detail' Research.slug %}"></a><span class="text-dark">{{Research.title}}</span></option>
+  {% endif %}
+
+  {% if Supervisor.slug %}
+  <option><a href="{% url 'category-detail' Supervisor.slug %}"></a><span class="text-dark">{{Supervisor.title}}</span></option>
+  {% endif %}
+
+  {% if CustomerService.slug %}
+  <option><a href="{% url 'category-detail' CustomerService.slug %}"></a><span class="text-dark">{{CustomerService.title}}</span></option>
+  {% endif %}
+
+  {% if Finance.slug %}
+  <option><a href="{% url 'category-detail' Finance.slug %}"></a><span class="text-dark">{{Finance.title}}</span></option>
+  {% endif %}
+
+  {% if Bank.slug %}
+  <option><a href="{% url 'category-detail' Bank.slug %}"></a><span class="text-dark">{{Bank.title}}</span></option>
+  {% endif %}
+
+  {% if SoftwareDeveloper %}
+  <option><a href="{% url 'category-detail' SoftwareDeveloper.slug %}"></a><span class="text-dark">{{SoftwareDeveloper.title}}</span></option>
+  {% endif %}
+
+  {% if Architect.slug %}
+  <option><a href="{% url 'category-detail' Architect.slug %}"></a><span class="text-dark">{{Architect.title}}</span></option>
+  {% endif %}
+
+  {% if Engineer.slug %}
+  <option><a href="{% url 'category-detail' Engineer.slug %}"></a><span class="text-dark">{{Engineer.title}}</span></option>
+  {% endif %}
+
+  {% if Manager.slug %}
+  <option><a href="{% url 'category-detail' Manager.slug %}"></a><span class="text-dark">{{Manager.title}}</span></option>
+  {% endif %}
+
+  {% if Uncategorised.slug %}
+  <option><a href="{% url 'category-detail' Uncategorised.slug %}"></a><span class="text-dark">{{Uncategorised.title}}</span></option>
+  {% endif %}
+
+  </select>
+</div>

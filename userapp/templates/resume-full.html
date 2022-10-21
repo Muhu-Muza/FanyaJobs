@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="decription" content="{{object.seoDescription}}">
+    <meta name="keywords" content="{{object.seoKeywords">
+    <meta name="author" content="FanyaJobs">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'app/css/custom-bs.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/fonts/line-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/animate.min.css' %}">
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">    
+    <title>{{object.title}}</title>
+</head>
+<body>
+
+    
+
+
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+      
+  
+  <div class="site-wrap">
+  
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div> <!-- .site-mobile-menu -->
+      
+  
+      <!-- NAVBAR -->
+      <header class="site-navbar mt-3">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="site-logo col-6"><a href="{% url 'home_page' %}"><img src="{% static 'app/images/Fay.png' %}" style="height:7rem; width:9rem;"></a></div>
+  
+            <nav class="mx-auto site-navigation">
+              <ul class="site-menu js-clone-nav d-block ml-0 pl-0">
+              <li><a href="{% url 'home_page' %}" class="nav-link active">Home</a></li>
+              
+              <li class="has-children">
+                  <a href="{% url 'aboutus' %}" >About</a>
+                  <ul class="dropdown">
+                    <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                    <li><a href="{% url 'blog-page' %}">Blog</a></li>
+                    <li><a href="{% url 'terms' %}">Terms and conditions</a></li>
+                  </ul>
+                  </li>
+                  <li><a href="{% url 'job-list' %}">Jobs</a></li>
+                  <li><a href="{% url 'contact_page' %}">Contact</a></li>
+              </ul>
+          </nav>
+  
+          </div>
+            
+        </div>
+      </header>
+
+     <!-- HOME -->
+     <section class="section-hero overlay inner-page bg-image" style="background: url({% static 'app/images/ground3.jpg' %}) center center; " id="home-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="text-center text-white">
+                    <h2 class="text-muted text-uppercase title mb-4">Resume Holder: {{object_res.user.first_name}} {{object_res.user.last_name}}</h4>
+                    </div></h2>
+                    
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Job details start -->
+    <section class="section bg-light pb-4"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" style="padding: 40px;">
+                    <h4 class="text-dark mb-3">Resume Holder: {{object_res.user.first_name}} {{object_res.user.last_name}}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12" >
+
+                    <div class="job-detail border rounded p4 bg-white" style="padding: 40px;">
+                        <div class="job-detail-content">
+                            <!-- <img src="{{object.company.companyLogo.url}}" alt="" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block"> -->
+                            
+                            <div class="job-detail-com-desc overflow-hidden d-block" >
+                                <h4 class="mb-4 text-info" ><a href="#" class=""text-info></a> <strong>RESUME:</strong></h4>
+
+                                <div class="d-flex flex-row">
+
+                                  <div class="col-6">
+                                    {% if object_res.date_birth %}
+                                    <p class="text-info mb-0"><i class="lni lni-money-location mr-2"></i>Date of Birth: {{object_res.date_birth}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.sex %}
+                                    <p class="text-info mb-0"><i class="lni lni-pin mr-2"></i>Sex: {{object_res.sex}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.marital_status %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Status: {{object_res.marital_status}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.addressLine1 %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Address: {{object_res.addressLine1}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.addressLine2 %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Address2: {{object_res.addressLine2}}</p>
+                                    {% endif %}
+
+                                    
+
+                                    {% if object_res.cover_letter %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Cover Letter: <a href="{{object_res.cover_letter.url}}" class="btn btn-primary rounded-pill">Download</a></p>
+                                    {% endif %} 
+                                  </div>
+
+                                  <div class="col-6">
+                                    
+                                    {% if object_res.village %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Village: {{object_res.village}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.city %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>City: {{object_res.city}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.district %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>District: {{object_res.district}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.phoneNumber %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Telephone: {{object_res.phoneNumber}}</p>
+                                    {% endif %}
+
+                                    {% if object_res.cv %}
+                                    <p class="text-info mb-0"><i class="lni lni-link mr-2"></i>Curriculum Vitae: <a href="{{object_res.cv.url}}" class="btn btn-primary rounded-pill"> Download</a> </p>
+                                    {% endif %}
+                                  </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <hr>
+
+                     
+                        
+                        <div class="d-flex flex-row">
+
+                          <div class="job-detail-desc mt-4 mb-4 col-6">
+
+                            <h5 class="text-dark mb-4"> <strong>Education Background :</strong></h5>
+                            {% if object_edu.institution %}
+                            
+                            <p class="text-secondary mb-3"> Institution:  <span class="text-dark">{{object_edu.institution}}</span></p>
+                            {% endif %}
+
+                            {% if object_edu.qualification %}
+                            <p class="text-secondary mb-3"> Qualification:  <span class="text-dark"> {{object_edu.qualification}}</span></p>
+                            {% endif %}
+
+                            {% if object_edu.level %}
+                            <p class="text-secondary mb-0">  Level: <span class="text-dark"> {{object_edu.level}}</span></p>
+                            {% endif %}
+
+                            {% if object_edu.start_date %}
+                            <p class="text-secondary mb-3"> Started: <span class="text-dark"> {{object_edu.start_date}}</span></p>
+                            {% endif %}
+
+                            {% if object_edu.graduated %}
+                            <p class="text-secondary mb-3"> Ended:  <span class="text-dark">{{object_edu.graduated}}</span></p>
+                            {% endif %}
+
+                            {% if object_edu.major_subject %}
+                            <p class="text-secondary mb-0">  Majored in: <span class="text-dark">{{object_edu.major_subject}}</span></p>
+                            {% endif %}
+                        </div>
+
+                     
+                        
+                       
+                        <div class="job-detail-desc mt-4 mb-4 col-6">
+                          <h5 class="text-dark mb-4"> <strong>Work Experience :</strong></h5>
+                            {% if object_exp.company %}
+                            <p class="text-secondary mb-3">Company: <span class="text-dark"> {{object_exp.company}} </span></p>
+                            {% endif %}
+
+                            {% if object_exp.position %}
+                            <p class="text-secondary mb-3">Position: <span class="text-dark"> {{object_exp.position}} </span></p>
+                            {% endif %}
+
+                            {% if object_exp.start_date %}
+                            <p class="text-secondary mb-0"> Started: <span class="text-dark"> {{object_exp.start_date}} </span></p>
+                            {% endif %}
+
+                            {% if object_exp.end_date %}
+                            <p class="text-secondary mb-3">Ended: <span class="text-dark"> {{object_exp.end_date}} </span></p>
+                            {% endif %}
+
+                            {% if object_exp.experience %}
+                            <p class="text-secondary mb-3">Experience: <span class="text-dark"> {{object_exp.experience}} </span></p>
+                            {% endif %}
+
+                            {% if object_exp.skills %}
+                            <p class="text-secondary mb-0">Skills: <span class="text-dark"> {{object_exp.skills}} </span></p>
+                            {% endif %}
+                        </div>
+
+                    
+                    
+                        </div>
+                        
+
+
+
+                    </div>
+                  
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- job detail end -->
+
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row mb-auto">
+            <div class="col-8 col-md-3 mb-4 mb-md-0 ml-5">
+              <h3>Company</h3>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                <li><a href="{% url 'aboutus' %}">Career</a></li>
+                <li><a href="{% url 'blog-page' %}">Blog</a></li>
+                <li><a href="#">Resources</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+              <h3>Support</h3>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'contact_page' %}">Support</a></li>
+                <li><a href="{% url 'terms' %}">Terms of Service</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+              <h3>Contact Us</h3>
+              <div class="footer-social">
+                <a href="#"><span class="icon-facebook"></span></a>
+                <a href="#"><span class="icon-twitter"></span></a>
+                <a href="#"><span class="icon-instagram"></span></a>
+                <a href="#"><span class="icon-linkedin"></span></a>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row text-center">
+            <div class="col-12">
+              <p class="copyright"><small>
+                
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="icon-heart text-danger" aria-hidden="true"></i>  <a href="https://colorlib.com" target="_blank" >FanyaJobs</a>
+              </small></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+</div>
+  
+
+    
+    <!-- SCRIPTS -->
+    <script src="{% static 'app/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'app/js/stickyfill.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.fancybox.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.easing.1.3.js' %}"></script>
+    
+    <script src="{% static 'app/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    
+    <script src="{% static 'app/js/bootstrap-select.min.js' %}"></script>
+    
+    <script src="{% static 'app/js/custom.js' %}"></script>
+    
+
+
+
+
+</body>
+</html>

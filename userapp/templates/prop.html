@@ -1,0 +1,189 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'app/css/custom-bs.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/fonts/line-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/animate.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'app/css/styles.css' %}">
+         
+    <!--<title>Login & Registration Form</title>-->
+</head>
+<body>
+    
+    <div class="container">
+        <div class="forms">
+            <!-- <div class="form login">
+                <span class="title">Login</span>
+
+                <form  class="form login" method="POST">
+
+
+                {% csrf_token %} 
+                    
+                    <div class="row">
+                    </div>
+                                    <div class="input-field">
+                                        <input type="text" placeholder="Enter your email" required>
+                                        <i class="uil uil-envelope icon"></i>
+                                    </div>
+                                    <div class="input-field">
+                                        <input type="password" class="password" placeholder="Enter your password" required>
+                                        <i class="uil uil-lock icon"></i>
+                                        <i class="uil uil-eye-slash showHidePw"></i>
+                                    </div>
+
+                                    <div class="checkbox-text">
+                                        <div class="checkbox-content">
+                                            <input type="checkbox" id="logCheck">
+                                            <label for="logCheck" class="text">Remember me</label>
+                                        </div>
+                                        
+                                        <a href="#" class="text">Forgot password?</a>
+                                    </div>
+
+                                    <div class="input-field button">
+                                        <input type="button" value="Login">
+                                    </div> 
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Not a member?
+                        <a href="#" class="text signup-link">Signup Now</a>
+                    </span>
+                </div>
+            </div> -->
+
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">Registration</span>
+
+                <form method="POST" class="form login">
+
+                    {% csrf_token %}
+
+                    <div class="row form-group">
+                        
+                        <div class="col-md-12">
+                            {% if form.errors %}
+                              {% for field in form %}
+                                  {% for error in field.errors %}
+                                      <div class="alert alert-danger">
+                                          <strong>{{ error|escape }}</strong>
+                                          <strong>{{ field|escape }}</strong>
+                                      </div>
+                                   
+                                  {% endfor%}
+                              { for error in form.non_field_errors %}
+                                      <div class="alert alert-danger">
+                                          <strong>{{ error|escape }}</strong>
+                                      </div>
+                              {% endfor %}
+                            {% endif %}
+
+                        </div>
+                        
+                        <div class="input-field">
+                            {{form.first_name}}
+                            <i class="uil uil-user"></i>
+                        </div>
+                        {% if form.first_name.errors %}
+                        {% for error in form.first_name.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="input-field">
+                            {{form.last_name}}
+                            <i class="uil uil-user"></i>
+                        </div>
+                        {% if form.last_name.errors %}
+                        {% for error in form.last_name.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="input-field">
+                            {{form.email}}
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="input-field">
+                            {{form.password1}}
+                            <i class="uil uil-lock icon"></i>
+                        </div>
+                        {% if form.password1.errors %}
+                        {% for error in form.password1.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="input-field">
+                            
+                            {{form.password2}}
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+                        {% if form.password2.errors %}
+                        {% for error in form.password2.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        {% endif %} 
+    
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                {{form.check}}
+                                <label for="termCon" class="text">I accept all terms and conditions</label>
+                            </div>
+                            {% if form.check.errors %}
+                            {% for error in form.check.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+    
+                        <div class="input-field button">
+                            <!-- <input type="button" value="Signup"> -->
+                            <button class="input-field button" type="submit">Register</button>
+                        </div>
+
+                    </div>
+                    
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Already a member?
+                        <a href="#" class="text login-link">Login Now</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'app/js/script.js' %}"></script>
+
+</body>
+</html>
