@@ -16,7 +16,7 @@ pip install django
 Once you have installed Django, you can clone this repository to your local machine by running the following command:
 
 ```
-git clone https://github.com/yourusername/job-portal.git
+git clone https://github.com/Muhu-Muza/jobPortal.git
 ```   
 After cloning the repository, navigate to the project directory and run the following command to start the development server:
 
