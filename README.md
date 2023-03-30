@@ -1,22 +1,29 @@
-# JobPortal Web Application
+# FanyaJobs  
+This is a job portal website built with Django. The website allows employers to post job listings and job seekers to browse and apply for jobs.  
 
-## About the project
-This is a project about a Job Portal where Employers can create accounts and post jobs that are then accessed by job seekers who have logged into the system. The job seekers can also create resumes that are visible only to them selves and potential employers.
+## Features  
+* Employers can create an account, post job listings, manage their listings, browse through resumes.  
+* Job seekers can create an account, create a resume, search for jobs by keyword and location, and apply for jobs.  
+* The website includes a dashboard/profile section for employers and job seekers to manage their accounts.  
+* The website includes a simple user interface that is easy to navigate for both employers and job seekers.  
 
-### Dependencies
-To install the dependencies on your machine run the following command in your terminal: pip install -r requirements
-these are available in the requirements.txt file
+## Installation  
+To run this project on your local machine, you will need to have Python and Django installed. You can download Python from the official website at https://www.python.org/ and install Django by running the following command in your terminal:  
 
-### Migrate to the database
-To migrate your models to the database. run the command: py manage.py makemigrations
-follow this command with: py manage.py migrate
+```
+pip install django
+```   
+Once you have installed Django, you can clone this repository to your local machine by running the following command:
 
-### For admin privileges
-To access the django admin panel you'll have to create a superuser. run the command: py manage.py createsuperuser "enter the name of your admin here without the quotes"
-and follow the steps that are hence required.
+```
+git clone https://github.com/yourusername/job-portal.git
+```   
+After cloning the repository, navigate to the project directory and run the following command to start the development server:
 
-### File structure
-To view the detailed file structure go to the test.txt file
+```
+python manage.py runserver
+```   
+You can then access the website by opening your web browser and navigating to http://localhost:8000/.
 
 
 
