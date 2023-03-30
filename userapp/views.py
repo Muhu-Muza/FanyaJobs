@@ -42,7 +42,7 @@ def register(request):
             # sendEmail(welcome.email, welcome.subject, [to_email])
 
             # send success to user
-            # user = form.cleaned_data.get('username')
+            user = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for' + user)
             return redirect('login_page')
         else:
